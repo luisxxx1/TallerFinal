@@ -51,7 +51,7 @@ public class Cursos extends javax.swing.JInternalFrame {
 
         TextCurso.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Nombre De Curso", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
-        TextDocente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Nombre De Docente ", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        TextDocente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Codigo De Docente ", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
