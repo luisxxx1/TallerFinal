@@ -1,8 +1,8 @@
 package Controllers;
 
 import Vista.Estudiantes;
-import Modelo.Estudiante;
-import Modelo.EstudianteDAO;
+import Entidades.Estudiante;
+import Dao.EstudianteDAO;
 import Conexion.ConexionBD;
 
 import java.awt.event.ActionEvent;

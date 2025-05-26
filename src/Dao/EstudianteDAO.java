@@ -1,5 +1,6 @@
-package Modelo;
+package Dao;
 
+import Entidades.Estudiante;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 

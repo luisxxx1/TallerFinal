@@ -1,5 +1,6 @@
-package Modelo;
+package Dao;
 
+import Entidades.Docente;
 import java.sql.*;
 
 public class DocenteDAO {
@@ -28,4 +29,18 @@ public class DocenteDAO {
             return filas > 0;
         }
     }
+    
+    
+    public Docente buscarDocentePorCodigo(String codigo) throws SQLException {
+    String sql = "SELECT * FROM docentes WHERE codigo = ?";
+    try (PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setString(1, codigo);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return new Docente(rs.getString("codigo"), rs.getString("nombre"));
+        }
+    }
+    return null;
+}
+
 }

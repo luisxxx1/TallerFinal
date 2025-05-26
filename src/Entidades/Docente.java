@@ -1,16 +1,14 @@
-package Modelo;
+package Entidades;
 
-public class Curso {
+public class Docente {
     private String codigo;
     private String nombre;
-    private String docente;
 
-    public Curso() {}
+    public Docente() {}
 
-    public Curso(String codigo, String nombre, String docente) {
+    public Docente(String codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.docente = docente;
     }
 
     public String getCodigo() {
@@ -28,12 +26,5 @@ public class Curso {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getDocente() {
-        return docente;
-    }
-
-    public void setDocente(String docente) {
-        this.docente = docente;
-    }
 }
+

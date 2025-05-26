@@ -1,7 +1,7 @@
 package Controllers;
 
-import Modelo.Docente;
-import Modelo.DocenteDAO;
+import Entidades.Docente;
+import Dao.DocenteDAO;
 import Vista.Docentes;
 
 import java.awt.event.ActionEvent;

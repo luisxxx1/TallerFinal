@@ -1,5 +1,6 @@
-package Modelo;
+package Dao;
 
+import Entidades.Curso;
 import java.sql.*;
 
 public class CursoDAO {
