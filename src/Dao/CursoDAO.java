@@ -16,7 +16,7 @@ public class CursoDAO {
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, Integer.parseInt(curso.getCodigo()));
             ps.setString(2, curso.getNombre());
-            ps.setString(3, curso.getDocente());
+            ps.setInt(3, Integer.parseInt(curso.getDocente()));
             int filas = ps.executeUpdate();
             return filas > 0;
         }
