@@ -3,8 +3,10 @@ package Dao;
 import Entidades.Estudiante;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class EstudianteDAO {
+
     private Connection conn;
 
     public EstudianteDAO(Connection conn) {
@@ -21,6 +23,15 @@ public class EstudianteDAO {
         } catch (Exception e) {
             System.out.println("Error al registrar estudiante: " + e.getMessage());
             return false;
+        }
+    }
+
+    public boolean borrarEstudiante(String codigo) throws SQLException {
+        String sql = "DELETE FROM estudiantes WHERE cod_estudiante = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, Integer.parseInt(codigo));
+            int filas = ps.executeUpdate();
+            return filas > 0;
         }
     }
 }

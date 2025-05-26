@@ -25,7 +25,7 @@ public class CursoDAO {
     public boolean borrarCurso(String codigo) throws SQLException {
         String sql = "DELETE FROM cursos WHERE cod_curso = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, codigo);
+            ps.setInt(1, Integer.parseInt(codigo));
             int filas = ps.executeUpdate();
             return filas > 0;
         }

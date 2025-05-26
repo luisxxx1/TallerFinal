@@ -24,7 +24,7 @@ public class DocenteDAO {
     public boolean borrarDocente(String codigo) throws SQLException {
         String sql = "DELETE FROM docentes WHERE cod_docente = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, codigo);
+            ps.setInt(1, Integer.parseInt(codigo));
             int filas = ps.executeUpdate();
             return filas > 0;
         }
@@ -34,7 +34,7 @@ public class DocenteDAO {
     public Docente buscarDocentePorCodigo(String codigo) throws SQLException {
     String sql = "SELECT * FROM docentes WHERE cod_docente = ?";
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
-        ps.setString(1, codigo);
+        ps.setInt(1, Integer.parseInt(codigo));
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             return new Docente(rs.getString("codigo"), rs.getString("nombre"));
