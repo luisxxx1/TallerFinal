@@ -59,7 +59,7 @@ public class ListaC extends javax.swing.JInternalFrame {
                 {null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre De curso", "Docente Asignado"
+                "Codigo", "Nombre De curso", "Codigo Docente"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -75,6 +75,11 @@ public class ListaC extends javax.swing.JInternalFrame {
         TextCurso.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Nombre De Curso", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
         TextDocente.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Codigo Docente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        TextDocente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextDocenteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -87,19 +92,18 @@ public class ListaC extends javax.swing.JInternalFrame {
                         .addGap(33, 33, 33)
                         .addComponent(BActualizar))
                     .addComponent(TextCodigo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TextCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(BuscarB, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(BuscarB, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(20, 20, 20)
                         .addComponent(BorrarB, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(TextDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(TextDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,6 +135,10 @@ public class ListaC extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TextDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextDocenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextDocenteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
