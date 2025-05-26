@@ -6,54 +6,73 @@ import Vista.Cursos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
-public class CursoController implements ActionListener {
+public class CursoController {
+
     private Cursos vista;
-    private CursoDAO dao;
+    private CursoDAO modelo;
 
-    public CursoController(Cursos vista, CursoDAO dao) {
+    public CursoController(Cursos vista, CursoDAO modelo) {
         this.vista = vista;
-        this.dao = dao;
+        this.modelo = modelo;
 
-        this.vista.BRegistrar.addActionListener(this);
-        this.vista.Borrarb.addActionListener(this);
+        // Asociar eventos a botones
+        this.vista.BRegistrar.addActionListener(new RegistrarListener());
+        this.vista.Borrarb.addActionListener(new BorrarListener());
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vista.BRegistrar) {
-            registrarCurso();
-        }
+    class RegistrarListener implements ActionListener {
 
-        if (e.getSource() == vista.Borrarb) {
-            borrarCurso();
-        }
-    }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String codigo = vista.TextCodigoC.getText().trim();
+            String nombre = vista.TextCurso.getText().trim();
+            String docente = vista.TextDocente.getText().trim();
 
-    private void registrarCurso() {
-        String codigo = vista.TextCodigoC.getText();
-        String nombre = vista.TextCurso.getText();
-        String docente = vista.TextDocente.getText();
+            if (codigo.isEmpty() || nombre.isEmpty() || docente.isEmpty()) {
+                JOptionPane.showMessageDialog(vista, "Por favor, rellene todos los campos");
+                return;
+            }
 
-        if (!codigo.isEmpty() && !nombre.isEmpty() && !docente.isEmpty()) {
             Curso curso = new Curso(codigo, nombre, docente);
-            dao.registrarCurso(curso);
-            limpiarCampos();
-            System.out.println("Curso registrado");
-        } else {
-            System.out.println("Todos los campos son obligatorios");
+            try {
+                boolean insertado = modelo.insertarCurso(curso);
+                if (insertado) {
+                    JOptionPane.showMessageDialog(vista, "Curso registrado con éxito");
+                    limpiarCampos();
+                } else {
+                    JOptionPane.showMessageDialog(vista, "Error al registrar el curso");
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(vista, "Error: " + ex.getMessage());
+            }
         }
     }
 
-    private void borrarCurso() {
-        String codigo = vista.TextCodigoC.getText();
+    class BorrarListener implements ActionListener {
 
-        if (!codigo.isEmpty()) {
-            dao.eliminarCurso(codigo);
-            limpiarCampos();
-            System.out.println("Curso eliminado");
-        } else {
-            System.out.println("Ingrese el código del curso a eliminar");
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String codigo = vista.TextCodigoC.getText().trim();
+
+            if (codigo.isEmpty()) {
+                JOptionPane.showMessageDialog(vista, "Ingrese el código del curso a borrar");
+                return;
+            }
+
+            try {
+                boolean borrado = modelo.borrarCurso(codigo);
+                if (borrado) {
+                    JOptionPane.showMessageDialog(vista, "Curso borrado con éxito");
+                    limpiarCampos();
+                } else {
+                    JOptionPane.showMessageDialog(vista, "No se encontró curso con ese código");
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(vista, "Error: " + ex.getMessage());
+            }
         }
     }
 

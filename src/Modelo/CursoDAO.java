@@ -1,19 +1,34 @@
 package Modelo;
 
-import java.util.ArrayList;
+import java.sql.*;
 
 public class CursoDAO {
-    private ArrayList<Curso> listaCursos = new ArrayList<>();
 
-    public void registrarCurso(Curso curso) {
-        listaCursos.add(curso);
+    private Connection conn;
+
+    public CursoDAO(Connection conn) {
+        this.conn = conn;
     }
 
-    public void eliminarCurso(String codigo) {
-        listaCursos.removeIf(c -> c.getCodigo().equals(codigo));
+    public boolean insertarCurso(Curso curso) throws SQLException {
+        String sql = "INSERT INTO cursos (codigo, nombre, docente) VALUES (?, ?, ?)";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, curso.getCodigo());
+            ps.setString(2, curso.getNombre());
+            ps.setString(3, curso.getDocente());
+            int filas = ps.executeUpdate();
+            return filas > 0;
+        }
     }
 
-    public ArrayList<Curso> getListaCursos() {
-        return listaCursos;
+    public boolean borrarCurso(String codigo) throws SQLException {
+        String sql = "DELETE FROM cursos WHERE codigo = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, codigo);
+            int filas = ps.executeUpdate();
+            return filas > 0;
+        }
     }
+
+    // Otros métodos como buscar, actualizar pueden agregarse acá
 }
