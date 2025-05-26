@@ -12,9 +12,9 @@ public class DocenteDAO {
     }
 
     public boolean insertarDocente(Docente docente) throws SQLException {
-        String sql = "INSERT INTO docentes (codigo, nombre) VALUES (?, ?)";
+        String sql = "INSERT INTO docentes (cod_docente, nom_docente) VALUES (?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, docente.getCodigo());
+            ps.setInt(1, Integer.parseInt(docente.getCodigo()));
             ps.setString(2, docente.getNombre());
             int filas = ps.executeUpdate();
             return filas > 0;
@@ -22,7 +22,7 @@ public class DocenteDAO {
     }
 
     public boolean borrarDocente(String codigo) throws SQLException {
-        String sql = "DELETE FROM docentes WHERE codigo = ?";
+        String sql = "DELETE FROM docentes WHERE cod_docente = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, codigo);
             int filas = ps.executeUpdate();
@@ -32,7 +32,7 @@ public class DocenteDAO {
     
     
     public Docente buscarDocentePorCodigo(String codigo) throws SQLException {
-    String sql = "SELECT * FROM docentes WHERE codigo = ?";
+    String sql = "SELECT * FROM docentes WHERE cod_docente = ?";
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
         ps.setString(1, codigo);
         ResultSet rs = ps.executeQuery();

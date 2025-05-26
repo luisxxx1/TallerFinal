@@ -12,9 +12,9 @@ public class EstudianteDAO {
     }
 
     public boolean registrar(Estudiante estudiante) {
-        String sql = "INSERT INTO estudiantes (codigo, nombre) VALUES (?, ?)";
+        String sql = "INSERT INTO estudiantes (cod_estudiante, nom_estudiante) VALUES (?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, estudiante.getCodigo());
+            ps.setInt(1, Integer.parseInt(estudiante.getCodigo()));
             ps.setString(2, estudiante.getNombre());
             ps.executeUpdate();
             return true;
